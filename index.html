@@ -534,10 +534,10 @@
     gift: { amount: 60, to: 'Lucas', from: 'Sarah', msg: null },
     remindEvery: true,
   };
+  // French by default (the salon's clients); a link ending in #en opens the English version.
   try {
-    var l = (navigator.language || 'fr').toLowerCase();
-    if (l.indexOf('en') === 0) S.lang = 'en';
-  } catch (e) { /* default French */ }
+    if (/^#en$/i.test(location.hash) || /[?&]lang=en\b/i.test(location.search)) S.lang = 'en';
+  } catch (e) { /* stay in French */ }
 
   var $ = function (id) { return document.getElementById(id); };
   function t(key, vars) {
